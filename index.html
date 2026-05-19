@@ -8,699 +8,363 @@
 <style>
   :root {
     --gold: #c9a227;
-    --gold-light: #f0d060;
     --gold-pale: #ffe99a;
     --jade: #3ecfaa;
-    --jade-dark: #1a7a62;
-    --crimson: #c0392b;
-    --indigo: #0a0e2a;
     --deep-blue: #060b1e;
     --mid-blue: #0d1535;
     --glow-gold: 0 0 18px #c9a22780, 0 0 40px #c9a22730;
     --glow-jade: 0 0 18px #3ecfaa60, 0 0 40px #3ecfaa20;
-    --glow-red: 0 0 18px #c0392b80;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background-color: var(--deep-blue);
     color: #e0d4b0;
-    font-family: 'Noto Serif SC', 'Cinzel', serif;
+    font-family: 'Noto Serif SC', serif;
     overflow-x: hidden;
-    position: relative;
   }
-
-  /* ── Star background ── */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background:
       radial-gradient(ellipse at 20% 10%, #1a2a6020 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 90%, #2a0a3020 0%, transparent 60%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
+      radial-gradient(ellipse at 80% 90%, #2a0a3020 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
   }
 
-  /* tiny stars */
-  .stars {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
+  /* ── Stars ── */
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .stars span {
-    position: absolute;
-    width: 2px; height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
-    opacity: var(--o, 0.6);
+    position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%;
+    animation: twinkle var(--d,3s) ease-in-out infinite alternate; opacity: var(--o,.6);
   }
-  @keyframes twinkle { from { opacity: 0.1; } to { opacity: var(--o, 0.8); } }
+  @keyframes twinkle { from { opacity:.1; } to { opacity: var(--o,.8); } }
 
-  /* ── HERO ── */
+  /* ── Hero ── */
   .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
+    position: relative; z-index: 1; text-align: center;
     padding: 70px 20px 50px;
     background: linear-gradient(180deg, #0a1030 0%, transparent 100%);
   }
-
   .hero-subtitle {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    color: var(--jade);
-    text-transform: uppercase;
-    margin-bottom: 14px;
+    font-family: 'Cinzel', serif; font-size: .75rem; letter-spacing: .4em;
+    color: var(--jade); text-transform: uppercase; margin-bottom: 14px;
     animation: fadeDown 1s ease both;
   }
-
   .hero-title {
     font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(2rem, 6vw, 4.2rem);
-    font-weight: 900;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #ffe99a 0%, #c9a227 40%, #ffe99a 70%, #a07010 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
+    font-size: clamp(2rem,6vw,4.2rem); font-weight: 900; line-height: 1.1;
+    background: linear-gradient(135deg,#ffe99a 0%,#c9a227 40%,#ffe99a 70%,#a07010 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     filter: drop-shadow(0 0 30px #c9a22760);
-    animation: fadeDown 1s 0.15s ease both;
+    animation: fadeDown 1s .15s ease both;
   }
-
   .hero-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 18px auto;
-    animation: fadeDown 1s 0.3s ease both;
+    display: flex; align-items: center; justify-content: center; gap: 16px; margin: 18px auto;
+    animation: fadeDown 1s .3s ease both;
   }
   .hero-divider::before, .hero-divider::after {
-    content: '';
-    width: 120px; height: 1px;
+    content: ''; width: 120px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .hero-divider-gem {
-    width: 10px; height: 10px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    box-shadow: var(--glow-gold);
-  }
+  .hero-divider-gem { width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); box-shadow: var(--glow-gold); }
+  .hero-desc { font-size: .9rem; color: #b0a880; letter-spacing: .15em; animation: fadeDown 1s .45s ease both; }
 
-  .hero-desc {
-    font-size: 0.9rem;
-    color: #b0a880;
-    letter-spacing: 0.15em;
-    animation: fadeDown 1s 0.45s ease both;
-  }
-
-  /* ── NAV TABS ── */
+  /* ── Nav ── */
   .nav-wrap {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: linear-gradient(180deg, #060b1eee 80%, transparent);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid #c9a22720;
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(180deg,#060b1eee 80%,transparent);
+    padding: 10px 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+    backdrop-filter: blur(8px); border-bottom: 1px solid #c9a22720;
   }
-
   .nav-btn {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #b0a880;
-    background: transparent;
-    border: 1px solid #c9a22730;
-    border-radius: 3px;
-    padding: 7px 18px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: inline-block;
+    font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: #b0a880;
+    background: transparent; border: 1px solid #c9a22730; border-radius: 3px;
+    padding: 7px 16px; cursor: pointer; transition: all .3s; text-decoration: none; display: inline-block;
   }
   .nav-btn:hover, .nav-btn.active {
-    color: var(--gold-pale);
-    border-color: var(--gold);
-    background: #c9a22715;
-    box-shadow: var(--glow-gold);
+    color: var(--gold-pale); border-color: var(--gold); background: #c9a22715; box-shadow: var(--glow-gold);
   }
 
-  /* ── SECTIONS ── */
+  /* ── Sections ── */
   .section {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto 70px;
-    padding: 0 20px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    position: relative; z-index: 1; max-width: 1000px; margin: 0 auto 70px; padding: 0 20px;
+    opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease;
   }
   .section.visible { opacity: 1; transform: none; }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 36px;
-    position: relative;
-  }
-  .section-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--jade);
-    margin-bottom: 8px;
-  }
+  .section-header { text-align: center; margin-bottom: 36px; }
+  .section-label { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .5em; text-transform: uppercase; color: var(--jade); margin-bottom: 8px; }
   .section-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
-    font-weight: 700;
+    font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem,3.5vw,2.2rem); font-weight: 700;
     background: linear-gradient(135deg, #ffe99a, #c9a227, #ffe99a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     filter: drop-shadow(0 0 12px #c9a22750);
   }
-  .section-rule {
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 12px auto 0;
-  }
+  .section-rule { width: 200px; height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); margin: 12px auto 0; }
 
-  /* ── PANEL / CARD ── */
+  /* ── Panel ── */
   .panel {
-    background: linear-gradient(135deg, #0d1535cc, #0a0e2acc);
-    border: 1px solid #c9a22730;
-    border-radius: 4px;
-    padding: 28px;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg,#0d1535cc,#0a0e2acc);
+    border: 1px solid #c9a22730; border-radius: 4px; padding: 26px;
+    position: relative; overflow: hidden; margin-bottom: 18px;
   }
-  .panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #c9a22708 0%, transparent 60%);
-    pointer-events: none;
-  }
-  /* corner ornaments */
-  .panel::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 20px; height: 20px;
-    border-top: 2px solid var(--gold);
-    border-left: 2px solid var(--gold);
-  }
+  .panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,#c9a22708 0%,transparent 60%); pointer-events: none; }
+  .panel::after { content: ''; position: absolute; top: 0; left: 0; width: 20px; height: 20px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-br { position: absolute; bottom: 0; right: 0; width: 20px; height: 20px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
-  .corner-br {
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 20px; height: 20px;
-    border-bottom: 2px solid var(--gold);
-    border-right: 2px solid var(--gold);
+  .panel-title {
+    font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .25em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
   }
+  .panel-title::before { content: '✦'; font-size: .6rem; }
 
-  /* ── CÁCH CHƠI grid ── */
-  .cmd-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 14px;
-    margin-bottom: 28px;
-  }
+  /* ── CMD Grid ── */
+  .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(210px,1fr)); gap: 11px; margin-bottom: 22px; }
   .cmd-card {
-    background: #0d153580;
-    border: 1px solid #c9a22720;
-    border-radius: 4px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    cursor: default;
+    background: #0d153580; border: 1px solid #c9a22720; border-radius: 4px;
+    padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px;
+    transition: border-color .3s, box-shadow .3s; cursor: default;
   }
-  .cmd-card:hover {
-    border-color: var(--gold);
-    box-shadow: var(--glow-gold);
-  }
-  .cmd-icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 6px #c9a22780);
-  }
-  .cmd-name {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--gold-pale);
-    letter-spacing: 0.05em;
-    margin-bottom: 4px;
-  }
-  .cmd-desc {
-    font-size: 0.75rem;
-    color: #9090a8;
-    line-height: 1.5;
-  }
+  .cmd-card:hover { border-color: var(--gold); box-shadow: var(--glow-gold); }
+  .cmd-icon { font-size: 1.3rem; flex-shrink: 0; filter: drop-shadow(0 0 5px #c9a22780); }
+  .cmd-name { font-family: 'Cinzel', serif; font-size: .74rem; font-weight: 700; color: var(--gold-pale); margin-bottom: 4px; }
+  .cmd-desc { font-size: .73rem; color: #8888a8; line-height: 1.5; }
 
-  .goals-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  @media (min-width: 600px) { .goals-grid { grid-template-columns: repeat(4, 1fr); } }
-
-  .goal-card {
-    background: #0d1535;
-    border: 1px solid #c9a22720;
-    border-radius: 4px;
-    padding: 16px 12px;
-    text-align: center;
-    transition: all 0.3s;
-  }
+  /* ── Goals ── */
+  .goals-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  @media(min-width:560px) { .goals-grid { grid-template-columns: repeat(4,1fr); } }
+  .goal-card { background: #0d1535; border: 1px solid #c9a22720; border-radius: 4px; padding: 16px 12px; text-align: center; transition: all .3s; }
   .goal-card:hover { border-color: var(--jade); box-shadow: var(--glow-jade); }
   .goal-icon { font-size: 1.8rem; margin-bottom: 8px; }
-  .goal-name { font-size: 0.72rem; color: #b0a880; line-height: 1.4; }
+  .goal-name { font-size: .73rem; color: var(--gold-pale); line-height: 1.4; font-weight: 600; }
+  .goal-desc { font-size: .68rem; color: #606080; margin-top: 5px; line-height: 1.4; }
 
-  /* ── LỘ TRÌNH steps ── */
-  .steps-track {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-  }
+  /* ── Steps ── */
+  .steps-track { display: flex; flex-direction: column; position: relative; }
   .steps-track::before {
-    content: '';
-    position: absolute;
-    left: 22px; top: 22px; bottom: 22px;
-    width: 2px;
-    background: linear-gradient(180deg, var(--gold), var(--jade), var(--gold));
-    opacity: 0.4;
+    content: ''; position: absolute; left: 20px; top: 22px; bottom: 22px; width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--jade), var(--gold)); opacity: .35;
   }
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 16px 0;
-    position: relative;
-  }
+  .step { display: flex; align-items: flex-start; gap: 18px; padding: 13px 0; position: relative; }
   .step-num {
-    flex-shrink: 0;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1rem;
-    font-weight: 900;
-    color: var(--gold-pale);
-    background: #0a0e2a;
-    box-shadow: var(--glow-gold);
-    position: relative;
-    z-index: 1;
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel Decorative', serif; font-size: .9rem; font-weight: 900;
+    color: var(--gold-pale); background: #0a0e2a; box-shadow: var(--glow-gold); z-index: 1;
   }
-  .step-body { flex: 1; padding-top: 8px; }
-  .step-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--gold-pale);
-    margin-bottom: 4px;
-  }
-  .step-desc { font-size: 0.78rem; color: #8888a8; line-height: 1.6; }
+  .step-body { flex: 1; padding-top: 6px; }
+  .step-title { font-family: 'Cinzel', serif; font-size: .87rem; font-weight: 700; color: var(--gold-pale); margin-bottom: 4px; }
+  .step-desc { font-size: .75rem; color: #8888a8; line-height: 1.65; }
+  .step-note { font-size: .71rem; color: #555570; margin-top: 4px; font-style: italic; }
 
-  .breakthrough-box {
-    background: linear-gradient(135deg, #1a0a0a, #0d0a1a);
-    border: 1px solid #c0392b50;
-    border-radius: 4px;
-    padding: 20px 24px;
-    margin-top: 24px;
-  }
-  .breakthrough-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #e74c3c;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .breakthrough-title::before { content: '⚠'; }
-  .breakthrough-list { list-style: none; }
-  .breakthrough-list li {
-    font-size: 0.78rem;
-    color: #b08080;
-    padding: 5px 0;
-    padding-left: 18px;
-    position: relative;
-    line-height: 1.6;
-  }
-  .breakthrough-list li::before {
-    content: '◆';
-    position: absolute;
-    left: 0;
-    color: #c0392b;
-    font-size: 0.5rem;
-    top: 8px;
-  }
+  /* Badges */
+  .badge { font-size: .68rem; padding: 2px 8px; border-radius: 3px; font-weight: 600; font-family: 'Cinzel', serif; display: inline-block; }
+  .badge-info    { background: #1a3a5a; color: #6abaff; }
+  .badge-success { background: #0a2a1a; color: #3ecfaa; }
+  .badge-warn    { background: #2a1a0a; color: #f0a030; }
+  .badge-danger  { background: #2a0a0a; color: #e74c3c; }
 
-  /* ── CẢNH GIỚI ── */
-  .realm-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-    margin-bottom: 20px;
-  }
+  .cmd-inline { font-family: 'Cinzel', serif; font-size: .7rem; color: var(--jade); background: #0a2a20; padding: 2px 7px; border-radius: 3px; border: 1px solid #3ecfaa30; }
+
+  /* Warn Box */
+  .warn-box { background: linear-gradient(135deg,#1a0a0a,#0d0a1a); border: 1px solid #c0392b40; border-radius: 4px; padding: 18px 22px; margin-top: 20px; }
+  .warn-title { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; color: #e74c3c; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+  .warn-title::before { content: '⚠ '; }
+  .warn-list { list-style: none; }
+  .warn-list li { font-size: .75rem; color: #b08080; padding: 5px 0 5px 18px; position: relative; line-height: 1.65; }
+  .warn-list li::before { content: '◆'; position: absolute; left: 0; color: #c0392b; font-size: .5rem; top: 9px; }
+
+  /* ── Realm Grid ── */
+  .realm-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(128px,1fr)); gap: 9px; margin-bottom: 16px; }
   .realm-card {
-    background: linear-gradient(135deg, #0d1535, #090e22);
-    border: 1px solid #c9a22728;
-    border-radius: 4px;
-    padding: 14px 10px;
-    text-align: center;
-    transition: all 0.3s;
-    cursor: default;
+    background: linear-gradient(135deg,#0d1535,#090e22); border: 1px solid #c9a22728; border-radius: 4px;
+    padding: 13px 10px; text-align: center; transition: all .3s; cursor: default;
   }
-  .realm-card:hover { border-color: var(--gold); box-shadow: var(--glow-gold); transform: translateY(-3px); }
-  .realm-name {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--gold-pale);
-    margin-bottom: 8px;
-  }
-  .realm-stat { font-size: 0.68rem; color: #7878a0; line-height: 1.7; }
-  .realm-stat span { color: #b0d0b0; }
+  .realm-card:hover { border-color: var(--gold); box-shadow: var(--glow-gold); transform: translateY(-2px); }
+  .realm-name { font-family: 'Cinzel', serif; font-size: .73rem; font-weight: 700; color: var(--gold-pale); margin-bottom: 6px; }
+  .realm-stat { font-size: .66rem; color: #7878a0; line-height: 1.7; }
+  .realm-stat strong { color: #b0d0b0; }
+  .realm-start { font-size: .66rem; color: var(--jade); }
+  .realm-warn  { border-color: #f0a03040 !important; }
+  .realm-warn .realm-name { color: #f0a030; }
+  .realm-danger { border-color: #e74c3c40 !important; }
+  .realm-danger .realm-name { color: #e74c3c; }
+  .realm-gold { border-color: #c9a22760 !important; }
+  .realm-gold .realm-name { color: var(--gold); }
 
-  .realm-badge {
-    background: #c9a22715;
-    border: 1px solid #c9a22730;
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin-top: 14px;
-    font-size: 0.78rem;
-    color: #a0a8b8;
-    line-height: 1.7;
-  }
-  .realm-badge strong { color: var(--gold-pale); }
+  /* Info rows */
+  .info-row { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #c9a22715; font-size: .75rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: #707088; min-width: 110px; flex-shrink: 0; }
+  .info-val { color: #c0c0e0; line-height: 1.65; }
 
-  /* ── HUYẾT MẠCH ── */
-  .bloodline-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 16px;
-  }
-  .bloodline-card {
-    background: linear-gradient(160deg, #0d0a20, #0a1030);
-    border-radius: 6px;
-    padding: 22px 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  .bloodline-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    transition: border-color 0.3s;
-  }
-  .bloodline-card.red::before { border-color: #c0392b50; }
-  .bloodline-card.orange::before { border-color: #e67e2250; }
-  .bloodline-card.teal::before { border-color: #3ecfaa50; }
-  .bloodline-card.blue::before { border-color: #3498db50; }
-  .bloodline-card.gray::before { border-color: #70708050; }
+  /* Info Box */
+  .info-box { background: #0a1a28; border: 1px solid #3ecfaa30; border-radius: 4px; padding: 13px 17px; margin-top: 14px; font-size: .75rem; color: #a0a8b8; line-height: 1.7; }
+  .info-box strong { color: var(--gold-pale); }
 
-  .bloodline-card:hover { transform: translateY(-4px); }
-  .bloodline-card.red:hover { box-shadow: 0 8px 30px #c0392b30; }
-  .bloodline-card.orange:hover { box-shadow: 0 8px 30px #e67e2230; }
-  .bloodline-card.teal:hover { box-shadow: 0 8px 30px #3ecfaa30; }
-  .bloodline-card.blue:hover { box-shadow: 0 8px 30px #3498db30; }
+  /* ── Bloodlines ── */
+  .bl-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 13px; }
+  .bl-card {
+    background: linear-gradient(160deg,#0d0a20,#0a1030); border-radius: 5px;
+    padding: 20px 14px; text-align: center; transition: transform .3s; border: 1px solid transparent;
+  }
+  .bl-card:hover { transform: translateY(-4px); }
+  .bl-danger  { border-color: #c0392b40; } .bl-danger:hover  { box-shadow: 0 8px 28px #c0392b25; }
+  .bl-warn    { border-color: #e67e2240; } .bl-warn:hover    { box-shadow: 0 8px 28px #e67e2225; }
+  .bl-info    { border-color: #3ecfaa40; } .bl-info:hover    { box-shadow: 0 8px 28px #3ecfaa25; }
+  .bl-success { border-color: #3498db40; } .bl-success:hover { box-shadow: 0 8px 28px #3498db25; }
+  .bl-muted   { border-color: #70708040; } .bl-muted:hover   { box-shadow: 0 8px 28px #70708025; }
 
-  .bloodline-orbs {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-  }
-  .orb {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem;
-  }
-  .orb-red { background: radial-gradient(circle at 35% 35%, #e74c3c, #7b0000); box-shadow: 0 0 8px #c0392b80; }
-  .orb-orange { background: radial-gradient(circle at 35% 35%, #e67e22, #7b3500); box-shadow: 0 0 8px #e67e2280; }
-  .orb-teal { background: radial-gradient(circle at 35% 35%, #3ecfaa, #0a6050); box-shadow: 0 0 8px #3ecfaa80; }
-  .orb-blue { background: radial-gradient(circle at 35% 35%, #3498db, #0a3060); box-shadow: 0 0 8px #3498db80; }
-  .orb-gray { background: radial-gradient(circle at 35% 35%, #9090a0, #404048); box-shadow: 0 0 8px #70708080; }
+  .bl-orbs { display: flex; justify-content: center; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
+  .orb { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .68rem; }
+  .orb-r { background: radial-gradient(circle at 35% 35%,#e74c3c,#7b0000); box-shadow: 0 0 7px #c0392b80; }
+  .orb-o { background: radial-gradient(circle at 35% 35%,#e67e22,#7b3500); box-shadow: 0 0 7px #e67e2280; }
+  .orb-t { background: radial-gradient(circle at 35% 35%,#3ecfaa,#0a6050); box-shadow: 0 0 7px #3ecfaa80; }
+  .orb-b { background: radial-gradient(circle at 35% 35%,#3498db,#0a3060); box-shadow: 0 0 7px #3498db80; }
+  .orb-g { background: radial-gradient(circle at 35% 35%,#9090a0,#404048); box-shadow: 0 0 7px #70708080; }
 
-  .bloodline-name {
-    font-family: 'Cinzel', serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .bl-red .bloodline-name { color: #e74c3c; }
-  .bl-orange .bloodline-name { color: #e67e22; }
-  .bl-teal .bloodline-name { color: #3ecfaa; }
-  .bl-blue .bloodline-name { color: #3498db; }
-  .bl-gray .bloodline-name { color: #9090a0; }
+  .bl-name { font-family: 'Cinzel', serif; font-size: .82rem; font-weight: 700; margin-bottom: 7px; }
+  .bl-danger  .bl-name { color: #e74c3c; }
+  .bl-warn    .bl-name { color: #e67e22; }
+  .bl-info    .bl-name { color: #3ecfaa; }
+  .bl-success .bl-name { color: #3498db; }
+  .bl-muted   .bl-name { color: #9090a0; }
+  .bl-members { font-size: .67rem; color: #707090; line-height: 1.75; margin-bottom: 9px; }
+  .bl-note { font-size: .65rem; color: #606080; margin-top: 6px; }
 
-  .bloodline-members {
-    font-size: 0.68rem;
-    color: #7878a0;
-    line-height: 1.7;
-    margin-bottom: 10px;
-  }
-  .bloodline-stat {
-    font-size: 0.72rem;
-    color: #a0c0a0;
-    font-weight: 600;
-  }
+  /* ── Topup ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width:640px) { .two-col { grid-template-columns: 1fr; } }
 
-  /* ── NẠP TIỀN ── */
-  .topup-flow {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 28px;
-  }
-  .topup-step {
-    background: #0d1535;
-    border: 1px solid #c9a22728;
-    border-radius: 4px;
-    padding: 20px 24px;
-    text-align: center;
-    min-width: 140px;
-    flex: 1;
-    max-width: 200px;
-    transition: all 0.3s;
-  }
-  .topup-step:hover { border-color: var(--gold); box-shadow: var(--glow-gold); }
-  .topup-icon { font-size: 2rem; margin-bottom: 10px; }
-  .topup-num {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.65rem;
-    color: var(--jade);
-    letter-spacing: 0.2em;
-    margin-bottom: 4px;
-  }
-  .topup-label {
-    font-size: 0.78rem;
-    color: var(--gold-pale);
-    font-weight: 600;
-  }
-  .topup-arrow {
-    font-size: 1.4rem;
-    color: var(--gold);
-    padding: 0 6px;
-    opacity: 0.6;
-  }
-  .topup-success {
-    background: linear-gradient(135deg, #0a2a1a, #0a1a1a);
-    border: 1px solid #3ecfaa50;
-    border-radius: 4px;
-    padding: 20px 24px;
-    text-align: center;
-    flex: 1; min-width: 140px; max-width: 220px;
-  }
-  .topup-success-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    color: var(--jade);
-    margin-bottom: 6px;
-    font-weight: 700;
-  }
-  .topup-success-desc { font-size: 0.75rem; color: #70a090; }
-
-  .topup-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .topup-links { display: flex; flex-direction: column; gap: 10px; }
   .topup-link-btn {
-    display: block;
-    background: linear-gradient(135deg, #c9a22715, #c9a22708);
-    border: 1px solid var(--gold);
-    border-radius: 4px;
-    padding: 14px 20px;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--gold-pale);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    transition: all 0.3s;
+    display: block; background: linear-gradient(135deg,#c9a22715,#c9a22708);
+    border: 1px solid var(--gold); border-radius: 4px; padding: 13px 18px;
+    text-align: center; font-family: 'Cinzel', serif; font-size: .74rem; font-weight: 700;
+    color: var(--gold-pale); text-decoration: none; letter-spacing: .1em; transition: all .3s;
   }
-  .topup-link-btn:hover { background: #c9a22730; box-shadow: var(--glow-gold); }
-  .topup-link-btn span { display: block; font-family: 'Noto Serif SC', serif; font-size: 0.85rem; color: var(--jade); margin-top: 3px; font-weight: 400; letter-spacing: 0.05em; }
+  .topup-link-btn:hover { background: #c9a22728; box-shadow: var(--glow-gold); }
+  .topup-link-btn span { display: block; font-family: 'Noto Serif SC',serif; font-size: .82rem; color: var(--jade); margin-top: 3px; font-weight: 400; letter-spacing: .04em; }
 
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px 20px 60px;
-    border-top: 1px solid #c9a22720;
-  }
-  footer p { font-size: 0.7rem; color: #50505a; letter-spacing: 0.2em; font-family: 'Cinzel', serif; }
+  /* ── Footer ── */
+  footer { position: relative; z-index: 1; text-align: center; padding: 40px 20px 60px; border-top: 1px solid #c9a22720; }
+  footer p { font-size: .7rem; color: #50505a; letter-spacing: .2em; font-family: 'Cinzel', serif; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes floatUp {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes floatUp  { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
   .float { animation: floatUp 4s ease-in-out infinite; }
 
-  /* scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--deep-blue); }
   ::-webkit-scrollbar-thumb { background: #c9a22740; border-radius: 3px; }
 
-  /* two-col layout */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  /* ── Resource Pack Steps ── */
+  .rp-steps { display: flex; flex-direction: column; gap: 0; }
+  .rp-step {
+    display: flex; align-items: flex-start; gap: 16px; padding: 13px 0;
+    border-bottom: 1px solid #c9a22712; position: relative;
   }
-  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .rp-step:last-child { border-bottom: none; }
+  .rp-icon-wrap { position: relative; flex-shrink: 0; }
+  .rp-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: #0d1535; border: 1px solid #c9a22730;
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+  }
+  .rp-num-badge {
+    position: absolute; bottom: -5px; right: -5px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #0a0e1e; border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif; font-size: .56rem; font-weight: 700; color: var(--gold-pale);
+    line-height: 1;
+  }
+  .rp-body { flex: 1; padding-top: 5px; }
+  .rp-title { font-size: .82rem; color: #d0cdb0; line-height: 1.6; }
+  .rp-title strong { color: var(--jade); font-weight: 600; }
+  .rp-title .hl-blue  { color: #6abaff; font-weight: 600; }
+  .rp-title .hl-gold  { color: var(--gold-pale); font-weight: 600; }
+  .rp-title .hl-green { color: #3ecfaa; font-weight: 600; }
+  .rp-title code {
+    font-family: 'Cinzel', serif; font-size: .74rem;
+    background: #0d2040; color: #6abaff; padding: 2px 8px; border-radius: 3px;
+    border: 1px solid #6abaff30;
+  }
 
-  /* realm two rows */
-  .realm-section-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: start;
+  .rp-note-box {
+    background: linear-gradient(135deg, #1a1000, #100a00);
+    border: 1px solid #c9a22740; border-radius: 4px; padding: 16px 18px;
   }
-  @media (max-width: 700px) { .realm-section-grid { grid-template-columns: 1fr; } }
+  .rp-note-title {
+    font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700;
+    color: var(--gold); letter-spacing: .2em; text-transform: uppercase;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .rp-note-title::before { content: '◆'; color: var(--gold); font-size: .55rem; }
+  .rp-note-list { list-style: none; }
+  .rp-note-list li {
+    font-size: .75rem; color: #b0a880; padding: 6px 0 6px 16px;
+    position: relative; line-height: 1.65; border-bottom: 1px solid #c9a22710;
+  }
+  .rp-note-list li:last-child { border-bottom: none; }
+  .rp-note-list li::before { content: '◆'; position: absolute; left: 0; color: var(--gold); font-size: .45rem; top: 10px; }
+  .rp-note-list li strong { color: #e74c3c; }
+  .rp-note-list li em { color: var(--jade); font-style: normal; }
 
-  .apche-box {
-    background: #0d1535;
-    border: 1px solid #c9a22728;
-    border-radius: 4px;
-    padding: 16px;
-    min-width: 180px;
+  .cta-strip {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px;
   }
-  .apche-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+  @media(max-width:560px) { .cta-strip { grid-template-columns: 1fr; } }
+  .cta-card {
+    background: linear-gradient(135deg, #0a1a28, #060f1e);
+    border: 1px solid #3ecfaa40; border-radius: 6px;
+    padding: 18px 16px; text-align: center; transition: all .3s;
   }
-  .apche-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    font-size: 0.72rem;
-    color: #9090a8;
+  .cta-card:hover { border-color: var(--jade); box-shadow: 0 0 20px #3ecfaa20; }
+  .cta-card-icon { font-size: 2rem; margin-bottom: 8px; }
+  .cta-card-title { font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700; color: var(--jade); margin-bottom: 4px; letter-spacing: .1em; }
+  .cta-card-desc { font-size: .7rem; color: #707090; line-height: 1.5; }
+
+  .rp-benefits {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 18px;
   }
-  .apche-badge {
-    background: #c0392b;
-    color: #fff;
-    border-radius: 3px;
-    padding: 2px 6px;
-    font-size: 0.62rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
+  @media(max-width:500px) { .rp-benefits { grid-template-columns: 1fr; } }
+  .rp-benefit-item {
+    background: #0d1535; border: 1px solid #c9a22720; border-radius: 4px;
+    padding: 14px 10px; text-align: center; transition: all .3s;
   }
-  .apche-badge.green { background: #27ae60; }
-  .vs-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 14px;
-    font-size: 0.68rem;
-    color: #7070a0;
-  }
-  .vs-tag {
-    background: #0a0e20;
-    border: 1px solid #c9a22730;
-    border-radius: 3px;
-    padding: 4px 10px;
-    color: var(--gold-pale);
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-  }
+  .rp-benefit-item:hover { border-color: var(--gold); box-shadow: var(--glow-gold); }
+  .rp-benefit-icon { font-size: 1.6rem; margin-bottom: 7px; }
+  .rp-benefit-name { font-size: .72rem; color: var(--gold-pale); font-weight: 600; margin-bottom: 3px; }
+  .rp-benefit-desc { font-size: .66rem; color: #606080; line-height: 1.4; }
 </style>
 </head>
 <body>
 
-<!-- Stars background -->
 <div class="stars" id="stars"></div>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══ HERO ═══ -->
 <header class="hero">
   <div class="hero-subtitle">✦ KingOra Server — Tu Tiên Chi Đạo ✦</div>
   <h1 class="hero-title float">Hướng Dẫn<br>Tân Thủ</h1>
   <div class="hero-divider"><div class="hero-divider-gem"></div></div>
-  <p class="hero-desc">Bước vào con đường tu tiên — Menu hướng dẫn chi tiết dành cho người mới</p>
+  <p class="hero-desc">Menu hướng dẫn chi tiết dành cho người mới bước vào con đường tu tiên</p>
 </header>
 
-<!-- ═══════════ NAV ═══════════ -->
+<!-- ═══ NAV ═══ -->
 <nav class="nav-wrap">
-  <a href="#cach-choi" class="nav-btn active">Cách Chơi</a>
-  <a href="#lo-trinh" class="nav-btn">Lộ Trình Tu Tiên</a>
-  <a href="#canh-gioi" class="nav-btn">Cảnh Giới</a>
+  <a href="#cach-choi"  class="nav-btn active">Cách Chơi</a>
+  <a href="#lo-trinh"   class="nav-btn">Lộ Trình Tu Tiên</a>
+  <a href="#canh-gioi"  class="nav-btn">Cảnh Giới</a>
   <a href="#huyet-mach" class="nav-btn">Huyết Mạch</a>
-  <a href="#nap-tien" class="nav-btn">Nạp Tiền</a>
+  <a href="#nap-tien"      class="nav-btn">Nạp Tiền</a>
+  <a href="#resource-pack" class="nav-btn">Resource Pack</a>
 </nav>
 
-<!-- ═══════════ CÁCH CHƠI ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 1 — CÁCH CHƠI
+═══════════════════════════════ -->
 <section id="cach-choi" class="section">
   <div class="section-header">
     <div class="section-label">Chương Nhất</div>
@@ -708,63 +372,64 @@
     <div class="section-rule"></div>
   </div>
 
-  <div class="panel" style="margin-bottom:20px">
+  <div class="panel">
     <div class="corner-br"></div>
+    <div class="panel-title">Lệnh Cơ Bản</div>
     <div class="cmd-grid">
       <div class="cmd-card">
         <div class="cmd-icon">☰</div>
         <div>
           <div class="cmd-name">/menu</div>
-          <div class="cmd-desc">Xem toàn bộ hướng dẫn cách chơi trong menu</div>
-        </div>
-      </div>
-      <div class="cmd-card">
-        <div class="cmd-icon">🏪</div>
-        <div>
-          <div class="cmd-name">/shop</div>
-          <div class="cmd-desc">Đặn nhà điểm khung giờ, tới khung giới</div>
+          <div class="cmd-desc">Mở tiện ích server — xem toàn bộ tính năng</div>
         </div>
       </div>
       <div class="cmd-card">
         <div class="cmd-icon">🧭</div>
         <div>
           <div class="cmd-name">/warp</div>
-          <div class="cmd-desc">Chọn thung lên / shop nhanh chóng</div>
+          <div class="cmd-desc">Mở các khu vực trong server</div>
         </div>
       </div>
       <div class="cmd-card">
-        <div class="cmd-icon">🎓</div>
-        <div>
-          <div class="cmd-name">/vohoc</div>
-          <div class="cmd-desc">Đặc chơi bị và sinh lực trên tủ viện</div>
-        </div>
-      </div>
-      <div class="cmd-card">
-        <div class="cmd-icon">⚔️</div>
+        <div class="cmd-icon">🧘</div>
         <div>
           <div class="cmd-name">/ngodao</div>
-          <div class="cmd-desc">Cảnh sào để chung lĩnh khí tu luyện</div>
-        </div>
-      </div>
-      <div class="cmd-card">
-        <div class="cmd-icon">🏦</div>
-        <div>
-          <div class="cmd-name">/bank</div>
-          <div class="cmd-desc">Chọn đo quả cảnh tiền tích lũy</div>
+          <div class="cmd-desc">Ngồi thiền hấp thu linh khí để tu luyện</div>
         </div>
       </div>
       <div class="cmd-card">
         <div class="cmd-icon">🌀</div>
         <div>
           <div class="cmd-name">/rtp</div>
-          <div class="cmd-desc">Bản cì ku đầu tu luyện thu linh khí ngẫu nhiên</div>
+          <div class="cmd-desc">Dịch chuyển ngẫu nhiên đến vùng sinh tồn</div>
+        </div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-icon">🏪</div>
+        <div>
+          <div class="cmd-name">/shop</div>
+          <div class="cmd-desc">Mở shop buôn bán vật phẩm</div>
+        </div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-icon">🎓</div>
+        <div>
+          <div class="cmd-name">/vohoc</div>
+          <div class="cmd-desc">Nâng cao sức mạnh tổng thể của nhân vật</div>
+        </div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-icon">🏦</div>
+        <div>
+          <div class="cmd-name">/bank</div>
+          <div class="cmd-desc">Nạp tiền hoặc quản lý số dư trong game</div>
         </div>
       </div>
       <div class="cmd-card">
         <div class="cmd-icon">💎</div>
         <div>
           <div class="cmd-name">/donate</div>
-          <div class="cmd-desc">Đột phá tranh chánh của nạp tiền</div>
+          <div class="cmd-desc">Ủng hộ máy chủ — nhận quyền lợi đặc biệt</div>
         </div>
       </div>
     </div>
@@ -772,29 +437,35 @@
 
   <div class="panel">
     <div class="corner-br"></div>
-    <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">✦ Mục Tiêu Chơi</div>
+    <div class="panel-title">Mục Tiêu Chơi</div>
     <div class="goals-grid">
       <div class="goal-card">
         <div class="goal-icon">⚔️</div>
-        <div class="goal-name">Điểm Sát Lực</div>
+        <div class="goal-name">Điểm Sát Lục</div>
+        <div class="goal-desc">Cày điểm để mua vật phẩm đặc biệt</div>
       </div>
       <div class="goal-card">
         <div class="goal-icon">🐉</div>
         <div class="goal-name">Boss Theo Khung Giờ</div>
+        <div class="goal-desc">Tham gia săn boss cùng người chơi khác</div>
       </div>
       <div class="goal-card">
         <div class="goal-icon">🌸</div>
         <div class="goal-name">Tranh Đoạt Tạo Hóa</div>
+        <div class="goal-desc">Sự kiện cạnh tranh giành phần thưởng hiếm</div>
       </div>
       <div class="goal-card">
         <div class="goal-icon">🔥</div>
-        <div class="goal-name">Bột Phá Cảnh Giới</div>
+        <div class="goal-name">Đột Phá Cảnh Giới</div>
+        <div class="goal-desc">Tu luyện liên tục để vươn lên đỉnh cao</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ LỘ TRÌNH ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 2 — LỘ TRÌNH TU TIÊN
+═══════════════════════════════ -->
 <section id="lo-trinh" class="section">
   <div class="section-header">
     <div class="section-label">Chương Nhị</div>
@@ -804,63 +475,72 @@
 
   <div class="panel">
     <div class="corner-br"></div>
+    <div class="panel-title">Lộ Trình Tân Thủ Bắt Buộc</div>
     <div class="steps-track">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <div class="step-title">Nhục Thần Cấp 5</div>
-          <div class="step-desc">Bước đầu tiên khi gia nhập server — Phẩm Nhân / Võ Nhân. Làm quen với hệ thống tu luyện cơ bản.</div>
+          <div class="step-title">Nhục Thân Cấp 5 — Khởi Đầu Tu Tiên</div>
+          <div class="step-desc">Làm nhiệm vụ để nâng <strong style="color:var(--gold-pale)">Nhục Thân</strong> lên <span class="badge badge-info">Cấp 5</span></div>
+          <div class="step-note">Cảnh giới hiện tại: Phàm Nhân / Võ Nhân</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <div class="step-title">Đột Phá Võ Nhân → Nhục Thần Cấp 10</div>
-          <div class="step-desc">Tích lũy kinh nghiệm, nâng cao sức mạnh, chuẩn bị bước sang cảnh giới mới.</div>
+          <div class="step-title">Đột Phá Võ Nhân → Nhục Thân Cấp 10</div>
+          <div class="step-desc">Đột phá lên <span class="badge badge-success">Võ Nhân</span> — tiếp tục nâng Nhục Thân lên <span class="badge badge-info">Cấp 10</span></div>
+          <div class="step-note">Hoàn thành nhiệm vụ chính mạch giai đoạn này</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <div class="step-title">Đột Phá Ngưng Khí → Nhục Thần Cấp 15</div>
-          <div class="step-desc">Bắt đầu hiểu về hệ thống linh khí. Đây là cột mốc quan trọng để mở rộng khả năng chiến đấu.</div>
+          <div class="step-title">Đột Phá Ngưng Khí → Nhục Thân Cấp 15</div>
+          <div class="step-desc">Đột phá lên <span class="badge badge-success">Ngưng Khí</span> — nâng Nhục Thân lên <span class="badge badge-info">Cấp 15</span></div>
+          <div class="step-note">Bước ngoặt quan trọng: chuẩn bị để tu luyện thật sự</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div class="step-body">
-          <div class="step-title">Đột Phá Luyện Khí → /ngodao</div>
-          <div class="step-desc">Bắt đầu đầu tư luyện hấp thu linh khí. Sử dụng lệnh <strong style="color:var(--gold-pale)">/ngodao</strong> để tối ưu hóa tiến trình.</div>
+          <div class="step-title">Đột Phá Luyện Khí — Bắt Đầu /ngodao</div>
+          <div class="step-desc">Đột phá lên <span class="badge badge-warn">Luyện Khí</span> — bắt đầu tu luyện hấp thu linh khí với <span class="cmd-inline">/ngodao</span></div>
+          <div class="step-note">Từ đây mới có thể tu luyện tích lũy linh khí thực sự</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">5</div>
         <div class="step-body">
           <div class="step-title">Tích Lũy Linh Khí — Đột Phá Cao Hơn</div>
-          <div class="step-desc">Trúc Cơ → Kim Đan → Nguyên Anh... Mỗi cảnh giới mở ra sức mạnh và bí ẩn mới của thế giới tu tiên.</div>
+          <div class="step-desc">Tích lũy đủ linh khí để tiếp tục đột phá qua các cảnh giới cao hơn</div>
+          <div class="step-note">Trúc Cơ → Kim Đan → Nguyên Anh → Hóa Thần → ...</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">6</div>
         <div class="step-body">
-          <div class="step-title">Cày Điểm Sát Lực — Tham Gia Boss Khung Giờ</div>
-          <div class="step-desc">Tranh đoạt tạo hóa cùng các đạo hữu. Chinh phục boss theo khung giờ để thu thập tài nguyên quý hiếm.</div>
+          <div class="step-title">Endgame — Cày Điểm, Boss & Tranh Đoạt</div>
+          <div class="step-desc">Cày <strong style="color:var(--gold-pale)">điểm sát lục</strong>, tham gia <strong style="color:var(--gold-pale)">boss khung giờ</strong> và <strong style="color:var(--gold-pale)">tranh đoạt tạo hóa</strong></div>
+          <div class="step-note">Nội dung endgame — phần thưởng cực kỳ giá trị</div>
         </div>
       </div>
     </div>
 
-    <div class="breakthrough-box">
-      <div class="breakthrough-title">Lưu Ý Đột Phá</div>
-      <ul class="breakthrough-list">
-        <li>Chunchì cứ hết failure — chung trình hệ và luận của chân nình trước khi đột phá</li>
-        <li>Thiên lỗi với thiên lỗi — chuẩn bị đầy đủ tài nguyên bảo vệ</li>
-        <li>Mist đtag chơi, giúp phá đtag nổi anh trên chết — thông báo khi cần hỗ trợ</li>
+    <div class="warn-box">
+      <div class="warn-title">Lưu Ý Đột Phá</div>
+      <ul class="warn-list">
+        <li>Có xác suất thất bại khi đột phá cảnh giới lớn — cần tích lũy đủ linh khí trước</li>
+        <li>Một số cảnh giới phải chịu thiên lôi khi đột phá, cần chuẩn bị kỹ lưỡng</li>
+        <li>Chết khi độ kiếp sẽ bị tụt 2 tầng nhỏ — hãy cẩn thận trước khi đột phá!</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CẢNH GIỚI ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 3 — CẢNH GIỚI
+═══════════════════════════════ -->
 <section id="canh-gioi" class="section">
   <div class="section-header">
     <div class="section-label">Chương Tam</div>
@@ -870,101 +550,93 @@
 
   <div class="panel">
     <div class="corner-br"></div>
-    <div class="realm-section-grid">
-      <div>
-        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--jade);text-transform:uppercase;margin-bottom:12px;">— Tầng Một: Cảnh Giới Sơ Kỳ —</div>
-        <div class="realm-grid">
-          <div class="realm-card">
-            <div class="realm-name">Phẩm Nhân</div>
-            <div class="realm-stat">10 tầng<br><span>LK/tầng</span><br>ĐP: %</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Võ Nhân</div>
-            <div class="realm-stat">10 tầng<br><span>LK/tầng</span><br>ĐP: %</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Ngưng Khí</div>
-            <div class="realm-stat">10 tầng<br><span>LK/tầng</span><br>ĐP: %</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Luyện Khí</div>
-            <div class="realm-stat">10 tầng<br><span>13 LK/tầng</span><br>BP: %</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Kim Đan</div>
-            <div class="realm-stat">10 tầng<br><span>10×10k</span><br>30%</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Nguyên Anh</div>
-            <div class="realm-stat">10 tầng<br><span>LK/tầng</span><br>ĐP: %</div>
-          </div>
-          <div class="realm-card" style="border-color:#c0392b50">
-            <div class="realm-name" style="color:#e74c3c">Hóa Thần</div>
-            <div class="realm-stat">10 tầng<br><span>10×250k</span><br>50%</div>
-          </div>
-        </div>
-
-        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--jade);text-transform:uppercase;margin:16px 0 12px;">— Tầng Hai: Cảnh Giới Cao Cấp —</div>
-        <div class="realm-grid">
-          <div class="realm-card">
-            <div class="realm-name">Trúc Cơ</div>
-            <div class="realm-stat">10 tầng<br><span>LK/tầng</span></div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Hợp Thể</div>
-            <div class="realm-stat">10 tầng<br><span>10×1.25M</span><br>20%</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Luyện Hư</div>
-            <div class="realm-stat">10 tầng<br><span>10×1.25ng</span><br>20%</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Hợp Thể+</div>
-            <div class="realm-stat">Bải đầu tu<br>kuyện 10 lổng<br>500 LA/tầng</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Luyện Hư+</div>
-            <div class="realm-stat">10 tầng<br><span>10×6M</span><br>10%</div>
-          </div>
-          <div class="realm-card">
-            <div class="realm-name">Độ Kiếp</div>
-            <div class="realm-stat">10 tầng<br><span>10×30M</span><br>20%</div>
-          </div>
-          <div class="realm-card" style="border-color:#c9a22760">
-            <div class="realm-name" style="color:var(--gold)">Tán Tiên+</div>
-            <div class="realm-stat">Badge-info:<br>Cổi, tiếc —<br>nhiều hơn</div>
-          </div>
-        </div>
+    <div class="panel-title">Danh Sách Cảnh Giới</div>
+    <div class="realm-grid">
+      <div class="realm-card">
+        <div class="realm-name">Phàm Nhân</div>
+        <div class="realm-start">Khởi đầu</div>
       </div>
-
-      <div class="apche-box">
-        <div class="apche-title">⚡ Áp Chế (/apche)</div>
-        <div class="apche-row">
-          <span class="apche-badge">info</span>
-          <span>Badge-info hà: Cổi tiền — nhiều bậc cao hơn</span>
-        </div>
-        <div style="margin-top:14px;text-align:center">
-          <div style="font-size:0.68rem;color:#707088;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:0.1em">HIỆU ỨNG</div>
-          <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:10px">
-            <div style="background:#c0392b30;border:1px solid #c0392b50;border-radius:3px;padding:5px 10px;font-size:0.68rem;color:#e74c3c">⚔ Damage</div>
-            <div style="color:var(--gold);font-size:0.8rem">+</div>
-            <div style="background:#3498db30;border:1px solid #3498db50;border-radius:3px;padding:5px 10px;font-size:0.68rem;color:#3498db">🌀 Slowing</div>
-          </div>
-          <div style="font-size:0.62rem;color:#505060;margin:10px 0 8px">— VS —</div>
-          <div style="display:flex;gap:6px;justify-content:center">
-            <div style="background:#c9a22715;border:1px solid #c9a22730;border-radius:3px;padding:4px 10px;font-size:0.65rem;color:var(--gold-pale);font-family:'Cinzel',serif">Kim Đan</div>
-            <div style="background:#3ecfaa15;border:1px solid #3ecfaa30;border-radius:3px;padding:4px 10px;font-size:0.65rem;color:var(--jade);font-family:'Cinzel',serif">Luyện Khí</div>
-          </div>
-        </div>
-        <div class="realm-badge" style="margin-top:14px;padding:12px;font-size:0.7rem">
-          Áp chế giúp tăng sức chiến đấu đáng kể. Nâng cấp huyết mạch để tối ưu hiệu quả.
-        </div>
+      <div class="realm-card">
+        <div class="realm-name">Võ Nhân</div>
+        <div class="realm-stat">Nhục thân 5+</div>
       </div>
+      <div class="realm-card">
+        <div class="realm-name">Ngưng Khí</div>
+        <div class="realm-stat">Nhục thân 10+</div>
+      </div>
+      <div class="realm-card realm-warn">
+        <div class="realm-name">Luyện Khí</div>
+        <div class="realm-stat"><span class="badge badge-warn" style="font-size:.6rem">Bắt đầu tu luyện</span></div>
+        <div class="realm-stat" style="margin-top:5px">10 tầng · 500 LK/tầng</div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Trúc Cơ</div>
+        <div class="realm-stat">10 tầng · 2.000 LK/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 30%</strong></div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Kim Đan</div>
+        <div class="realm-stat">10 tầng · 10.000 LK/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 30%</strong></div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Nguyên Anh</div>
+        <div class="realm-stat">10 tầng · 50.000 LK/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 20%</strong></div>
+      </div>
+      <div class="realm-card realm-danger">
+        <div class="realm-name">Hóa Thần</div>
+        <div class="realm-stat">10 tầng · 250.000/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 50%</strong></div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Hợp Thể</div>
+        <div class="realm-stat">10 tầng · 1.25M/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 20%</strong></div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Luyện Hư</div>
+        <div class="realm-stat">10 tầng · 6M/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 10%</strong></div>
+      </div>
+      <div class="realm-card realm-danger">
+        <div class="realm-name">Độ Kiếp</div>
+        <div class="realm-stat">10 tầng · 30M/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 20%</strong></div>
+      </div>
+      <div class="realm-card">
+        <div class="realm-name">Đại Thừa</div>
+        <div class="realm-stat">10 tầng · 150M/tầng</div>
+        <div class="realm-stat"><strong>ĐP: 10%</strong></div>
+      </div>
+      <div class="realm-card realm-gold">
+        <div class="realm-name">Tản Tiên+</div>
+        <div class="realm-stat">Cõi tiên — nhiều bậc cao hơn</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="corner-br"></div>
+    <div class="panel-title">Áp Chế — /apche</div>
+    <div class="info-row">
+      <div class="info-label">Lệnh</div>
+      <div class="info-val"><span class="cmd-inline">/apche</span> — Cảnh giới cao hơn có thể áp chế cảnh giới thấp hơn</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Hiệu ứng</div>
+      <div class="info-val">Gây sát thương + hiệu ứng <strong style="color:#3498db">Chậm</strong> — sát thương tăng theo khoảng cách cảnh giới</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Ví dụ</div>
+      <div class="info-val">Kim Đan áp chế Luyện Khí → sát thương gần như tiêu diệt tức thì</div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ HUYẾT MẠCH ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 4 — HUYẾT MẠCH
+═══════════════════════════════ -->
 <section id="huyet-mach" class="section">
   <div class="section-header">
     <div class="section-label">Chương Tứ</div>
@@ -974,77 +646,99 @@
 
   <div class="panel">
     <div class="corner-br"></div>
-    <div class="bloodline-grid">
-      <!-- Tổ Long -->
-      <div class="bloodline-card red bl-red">
-        <div class="bloodline-orbs">
-          <div class="orb orb-red">🐉</div>
-          <div class="orb orb-red" style="opacity:0.7">🦄</div>
-          <div class="orb orb-red" style="opacity:0.5">🌊</div>
-          <div class="orb orb-red" style="opacity:0.4">🌙</div>
+    <div class="panel-title">Huyết Mạch & Linh Khí/Giây</div>
+    <p style="font-size:.76rem;color:#707090;margin-bottom:18px;line-height:1.75">
+      Khi tạo nhân vật sẽ được cấp huyết mạch ngẫu nhiên theo tỉ lệ. Huyết mạch càng hiếm thì linh khí mỗi giây càng cao. Huyết mạch <strong style="color:#e74c3c">cố định từ khi tạo nhân vật, không thể thay đổi</strong>.
+    </p>
+    <div class="bl-grid">
+
+      <div class="bl-card bl-danger">
+        <div class="bl-orbs">
+          <div class="orb orb-r">🐉</div>
+          <div class="orb orb-r" style="opacity:.7">🦄</div>
+          <div class="orb orb-r" style="opacity:.5">🌊</div>
+          <div class="orb orb-r" style="opacity:.4">🦅</div>
         </div>
-        <div class="bloodline-name">Tổ Long</div>
-        <div class="bloodline-members">Thủy Kỳ Lân,<br>Nguyên Phe, Thiên Ngô</div>
-        <div class="bloodline-stat">12 LR/S · 0.01%</div>
+        <div class="bl-name">Tổ Long</div>
+        <div class="bl-members">Thủy Kỳ Lân<br>Nguyên Phượng · Thiên Ngô</div>
+        <div class="bl-stat"><span class="badge badge-danger">Siêu Hiếm</span></div>
+        <div class="bl-note">12 LK/s · 0.01% mỗi loại</div>
       </div>
 
-      <!-- Cửu Vĩ Hồ -->
-      <div class="bloodline-card orange bl-orange">
-        <div class="bloodline-orbs">
-          <div class="orb orb-orange">🦊</div>
-          <div class="orb orb-orange" style="opacity:0.7">🐦</div>
-          <div class="orb orb-orange" style="opacity:0.5">🐉</div>
+      <div class="bl-card bl-warn">
+        <div class="bl-orbs">
+          <div class="orb orb-o">🦊</div>
+          <div class="orb orb-o" style="opacity:.7">🐺</div>
+          <div class="orb orb-o" style="opacity:.55">🦌</div>
+          <div class="orb orb-o" style="opacity:.4">🦏</div>
         </div>
-        <div class="bloodline-name">Cửu Vĩ Hồ</div>
-        <div class="bloodline-members">Lang Vương,<br>Theo Thiết, Kỳ Lân</div>
-        <div class="bloodline-stat">8–9 LI/s · +6.25%</div>
+        <div class="bl-name">Cửu Vĩ Hồ</div>
+        <div class="bl-members">Lang Vương · Cung Kỳ<br>Thao Thiết · Kỳ Lân</div>
+        <div class="bl-stat"><span class="badge badge-warn">Cực Hiếm</span></div>
+        <div class="bl-note">8–9 LK/s · &lt;0.25%</div>
       </div>
 
-      <!-- Bạch Hổ -->
-      <div class="bloodline-card teal bl-teal">
-        <div class="bloodline-orbs">
-          <div class="orb orb-teal">🐯</div>
-          <div class="orb orb-teal" style="opacity:0.7">🐢</div>
-          <div class="orb orb-teal" style="opacity:0.5">🌊</div>
-          <div class="orb orb-teal" style="opacity:0.4">🐲</div>
+      <div class="bl-card bl-info">
+        <div class="bl-orbs">
+          <div class="orb orb-t">🐯</div>
+          <div class="orb orb-t" style="opacity:.7">🐢</div>
+          <div class="orb orb-t" style="opacity:.55">🐲</div>
+          <div class="orb orb-t" style="opacity:.4">🦅</div>
         </div>
-        <div class="bloodline-name">Bạch Hổ</div>
-        <div class="bloodline-members">Huyền Vũ, Kim Quy,<br>Ứng Long, Thanh Long</div>
-        <div class="bloodline-stat">4–8 LK/S · 0.3–0.5%</div>
+        <div class="bl-name">Bạch Hổ</div>
+        <div class="bl-members">Huyền Vũ · Kim Quy<br>Ứng Long · Thanh Long</div>
+        <div class="bl-stat"><span class="badge badge-info">Hiếm</span></div>
+        <div class="bl-note">4–8 LK/s · 0.3–0.5%</div>
       </div>
 
-      <!-- Giao Long -->
-      <div class="bloodline-card blue bl-blue">
-        <div class="bloodline-orbs">
-          <div class="orb orb-blue">🐲</div>
-          <div class="orb orb-blue" style="opacity:0.7">🦅</div>
-          <div class="orb orb-blue" style="opacity:0.5">🌀</div>
+      <div class="bl-card bl-success">
+        <div class="bl-orbs">
+          <div class="orb orb-b">🐲</div>
+          <div class="orb orb-b" style="opacity:.7">🦚</div>
+          <div class="orb orb-b" style="opacity:.55">🦜</div>
         </div>
-        <div class="bloodline-name">Giao Long</div>
-        <div class="bloodline-members">Phượng Hoàng,<br>Chu Tước, Côn Bằng</div>
-        <div class="bloodline-stat">5–8 LK/S · 0.7–1%</div>
+        <div class="bl-name">Giao Long</div>
+        <div class="bl-members">Phượng Hoàng<br>Chu Tước · Côn Bàng</div>
+        <div class="bl-stat"><span class="badge badge-success">Phổ Thông</span></div>
+        <div class="bl-note">5–8 LK/s · 0.7–1%</div>
       </div>
 
-      <!-- 9 con Rồng -->
-      <div class="bloodline-card gray bl-gray">
-        <div class="bloodline-orbs">
-          <div class="orb orb-gray">🐉</div>
-          <div class="orb orb-gray" style="opacity:0.7">🐲</div>
-          <div class="orb orb-gray" style="opacity:0.5">🌿</div>
+      <div class="bl-card bl-muted">
+        <div class="bl-orbs">
+          <div class="orb orb-g">🐉</div>
+          <div class="orb orb-g" style="opacity:.7">🐲</div>
+          <div class="orb orb-g" style="opacity:.5">🌿</div>
         </div>
-        <div class="bloodline-name">9 Con Rồng<br>9 Con Nồng</div>
-        <div class="bloodline-members">Tổ Ngưu, Nhai Ti...<br>Lưu ý huyết mạch</div>
-        <div class="bloodline-stat">2–6 LK/s · 1.5–20%</div>
+        <div class="bl-name">9 Con Rồng</div>
+        <div class="bl-members">Tù Ngưu · Nhai Ti<br>Trào Phong · ...</div>
+        <div class="bl-stat" style="color:#9090a0">Thường</div>
+        <div class="bl-note">2–6 LK/s · 1.5–20%</div>
       </div>
+
     </div>
+  </div>
 
-    <div class="realm-badge" style="margin-top:20px">
-      <strong>💡 Mẹo:</strong> Huyết mạch càng hiếm, bonus LK/s và % đột phá càng cao. Ưu tiên nâng cấp huyết mạch trước khi đột phá cảnh giới để tối ưu tốc độ tu luyện.
+  <div class="panel">
+    <div class="corner-br"></div>
+    <div class="panel-title">Lưu Ý Huyết Mạch</div>
+    <div class="info-row">
+      <div class="info-label">Linh khí/giây</div>
+      <div class="info-val">Huyết mạch ảnh hưởng trực tiếp lượng linh khí/giây khi ngồi đạo (<span class="cmd-inline">/ngodao</span>)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Không đổi được</div>
+      <div class="info-val">Huyết mạch cố định từ khi tạo nhân vật — <strong style="color:#e74c3c">không thể thay đổi</strong></div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Chiến lược</div>
+      <div class="info-val">Huyết mạch càng hiếm càng tích lũy linh khí nhanh hơn, rút ngắn thời gian đột phá cảnh giới đáng kể</div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ NẠP TIỀN ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 5 — NẠP TIỀN
+═══════════════════════════════ -->
 <section id="nap-tien" class="section">
   <div class="section-header">
     <div class="section-label">Chương Ngũ</div>
@@ -1055,85 +749,266 @@
   <div class="two-col">
     <div class="panel">
       <div class="corner-br"></div>
-      <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--jade);text-transform:uppercase;margin-bottom:18px;">Quy Trình Nạp</div>
-      <div class="topup-flow">
-        <div class="topup-step">
-          <div class="topup-icon">💰</div>
-          <div class="topup-num">Bước 1</div>
-          <div class="topup-label">/donate</div>
+      <div class="panel-title">Hướng Dẫn Nạp Thẻ / Ngân Hàng</div>
+      <div class="steps-track">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Gõ /donate trong game</div>
+            <div class="step-desc">Dùng lệnh <span class="cmd-inline">/donate</span> để mở bảng nạp tiền</div>
+          </div>
         </div>
-        <div class="topup-arrow">›</div>
-        <div class="topup-step">
-          <div class="topup-icon">🏦</div>
-          <div class="topup-num">Bước 2</div>
-          <div class="topup-label">Chọn Ngân Hàng<br>hoặc Thẻ Cào</div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Chọn hình thức nạp</div>
+            <div class="step-desc">Chọn <strong style="color:var(--gold-pale)">Ngân hàng</strong> hoặc <strong style="color:var(--gold-pale)">Thẻ cào</strong> rồi làm theo hướng dẫn</div>
+          </div>
         </div>
-        <div class="topup-arrow">›</div>
-        <div class="topup-step">
-          <div class="topup-icon">⏳</div>
-          <div class="topup-num">Bước 3</div>
-          <div class="topup-label">Chờ 5 Phút</div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Chờ khoảng 5 phút</div>
+            <div class="step-desc">Coin sẽ tự động cộng vào tài khoản. Nếu quá lâu hãy liên hệ Admin</div>
+          </div>
         </div>
-        <div class="topup-arrow">›</div>
-        <div class="topup-success">
-          <div style="font-size:1.4rem;margin-bottom:6px">✅</div>
-          <div class="topup-success-title">Nạp Thành Công!</div>
-          <div class="topup-success-desc">Tổng cộng não động trong 5 phút</div>
-        </div>
+      </div>
+      <div class="info-box" style="background:linear-gradient(135deg,#0a2a1a,#0a1a1a);border-color:#3ecfaa40;margin-top:16px">
+        <strong style="color:var(--jade)">✓ Nạp thành công!</strong><br>
+        Coin sẽ tự động cộng sau 5 phút. Nếu quá lâu hãy liên hệ Admin.
       </div>
     </div>
 
     <div class="panel">
       <div class="corner-br"></div>
-      <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--jade);text-transform:uppercase;margin-bottom:18px;">Kênh Nạp</div>
+      <div class="panel-title">Kênh Nạp</div>
       <div class="topup-links">
         <a href="https://mc.kingora.net" class="topup-link-btn" target="_blank">
           🌐 Nạp Qua Web
           <span>mc.kingora.net</span>
         </a>
         <a href="#" class="topup-link-btn">
-          🏦 Lệnh Bank
-          <span>/bank · mc.kingora.net</span>
+          🏦 Lệnh Bank Trong Game
+          <span>/bank — quản lý số dư</span>
         </a>
+      </div>
+      <div class="info-box" style="margin-top:16px">
+        <strong>💡 Lưu ý:</strong> Nạp qua web tại <strong style="color:var(--jade)">mc.kingora.net</strong> để có trải nghiệm nhanh và an toàn nhất.
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
+<!-- ═══════════════════════════════
+     CHƯƠNG 6 — RESOURCE PACK
+═══════════════════════════════ -->
+<section id="resource-pack" class="section">
+  <div class="section-header">
+    <div class="section-label">Chương Lục</div>
+    <h2 class="section-title">Hướng Dẫn Tải Resource Pack</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- Lợi ích -->
+  <div class="panel">
+    <div class="corner-br"></div>
+    <div class="panel-title">Tại Sao Cần Tải Resource Pack?</div>
+    <div class="rp-benefits">
+      <div class="rp-benefit-item">
+        <div class="rp-benefit-icon">✨</div>
+        <div class="rp-benefit-name">Hiệu Ứng Hoành Tráng</div>
+        <div class="rp-benefit-desc">Đồ họa tu tiên sống động, hiệu ứng phép thuật đẹp mắt</div>
+      </div>
+      <div class="rp-benefit-item">
+        <div class="rp-benefit-icon">🏯</div>
+        <div class="rp-benefit-name">Giao Diện Tu Tiên</div>
+        <div class="rp-benefit-desc">UI, icon, texture mang phong cách tiên hiệp đặc trưng</div>
+      </div>
+      <div class="rp-benefit-item">
+        <div class="rp-benefit-icon">🌌</div>
+        <div class="rp-benefit-name">Thế Giới Huyền Ảo</div>
+        <div class="rp-benefit-desc">Trải nghiệm thế giới KingOra trọn vẹn nhất có thể</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 bước -->
+  <div class="two-col" style="align-items:start">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="panel-title">Các Bước Cài Đặt</div>
+      <div class="rp-steps">
+
+        <div class="rp-step">
+          <div class="rp-icon">🔗
+            <div class="rp-num-badge">1</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Vào <strong>đường link tải</strong> Resource Pack mà server cung cấp</div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">⬇️
+            <div class="rp-num-badge">2</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Nhấn <span class="hl-green">Download / Tải xuống</span> để tải file pack về máy</div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">⌨️
+            <div class="rp-num-badge">3</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Sau khi tải xong, nhấn tổ hợp phím <span class="hl-blue">Windows + R</span></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">📝
+            <div class="rp-num-badge">4</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Gõ: <code>%appdata%</code> rồi nhấn <span class="hl-blue">Enter</span></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">📁
+            <div class="rp-num-badge">5</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Tìm thư mục <strong>.minecraft</strong> và mở lên</div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">📂
+            <div class="rp-num-badge">6</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Tìm tiếp thư mục <strong>resourcepacks</strong> bên trong</div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">🗜️
+            <div class="rp-num-badge">7</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Copy hoặc kéo file pack vừa tải vào thư mục <strong>resourcepacks</strong></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">🎮
+            <div class="rp-num-badge">8</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Mở Minecraft và vào server <span class="hl-gold">KingOra — Cụm Tu Tiên</span></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">⚙️
+            <div class="rp-num-badge">9</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Vào phần <span class="hl-blue">Options</span> → <span class="hl-blue">Resource Packs</span></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">✅
+            <div class="rp-num-badge">10</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Chọn pack vừa thêm và nhấn <span class="hl-green">Done</span></div>
+          </div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-icon">🚀
+            <div class="rp-num-badge">11</div>
+          </div>
+          <div class="rp-body">
+            <div class="rp-title">Quay lại server — pack sẽ tự tải và hiển thị <span class="hl-green">thành công!</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Lưu ý + CTA -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="panel" style="margin-bottom:0">
+        <div class="corner-br"></div>
+        <div class="panel-title">Lưu Ý Quan Trọng</div>
+        <div class="rp-note-box">
+          <div class="rp-note-title">Ghi Nhớ</div>
+          <ul class="rp-note-list">
+            <li>File pack thường có dạng <strong>.zip</strong> — <em>không cần giải nén</em>, kéo thẳng vào thư mục là được</li>
+            <li>Nếu không thấy pack hiện lên trong game, hãy thử <strong>khởi động lại Minecraft</strong></li>
+            <li>Nên dùng <strong>Minecraft Java Edition</strong> để có trải nghiệm tốt nhất với resource pack</li>
+            <li>Pack chỉ ảnh hưởng giao diện, <em>không ảnh hưởng gameplay hay dữ liệu nhân vật</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:0">
+        <div class="corner-br"></div>
+        <div class="panel-title">Tham Gia Ngay</div>
+        <div class="cta-strip" style="margin-top:0">
+          <div class="cta-card">
+            <div class="cta-card-icon">🌐</div>
+            <div class="cta-card-title">Website</div>
+            <div class="cta-card-desc"><a href="https://mc.kingora.net" target="_blank" style="color:var(--jade);text-decoration:none">mc.kingora.net</a></div>
+          </div>
+          <div class="cta-card" style="border-color:#c9a22740">
+            <div class="cta-card-icon">⚔️</div>
+            <div class="cta-card-title" style="color:var(--gold)">Server IP</div>
+            <div class="cta-card-desc" style="color:var(--gold-pale);font-weight:600">mc.kingora.net</div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:14px;text-align:center">
+          🎯 <strong>Chơi đúng pack</strong> — <span style="color:var(--jade)">trải nghiệm trọn vẹn!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="hero-divider" style="margin-bottom:16px"><div class="hero-divider-gem"></div></div>
   <p>✦ KINGORA SERVER — Hướng Dẫn Tân Thủ ✦</p>
-  <p style="margin-top:8px;opacity:0.5">Tu tiên chi đạo — Vạn lý hành trình bắt đầu từ một bước</p>
+  <p style="margin-top:8px;opacity:.5">Tu tiên chi đạo — Vạn lý hành trình bắt đầu từ một bước</p>
 </footer>
 
 <script>
   // Generate stars
   const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 120; i++) {
+  for (let i = 0; i < 110; i++) {
     const s = document.createElement('span');
-    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${0.2+Math.random()*0.7};animation-delay:${Math.random()*5}s;width:${Math.random()>0.85?3:2}px;height:${Math.random()>0.85?3:2}px`;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${0.2+Math.random()*0.7};animation-delay:${Math.random()*5}s;width:${Math.random()>.85?3:2}px;height:${Math.random()>.85?3:2}px`;
     starsEl.appendChild(s);
   }
 
   // Scroll-triggered section reveal
-  const sections = document.querySelectorAll('.section');
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  sections.forEach(s => obs.observe(s));
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.section').forEach(s => obs.observe(s));
 
-  // Nav active state
+  // Nav active state on scroll
   const navBtns = document.querySelectorAll('.nav-btn');
   const sectionEls = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
     let cur = '';
-    sectionEls.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) cur = s.id;
-    });
-    navBtns.forEach(b => {
-      b.classList.toggle('active', b.getAttribute('href') === '#' + cur);
-    });
+    sectionEls.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    navBtns.forEach(b => b.classList.toggle('active', b.getAttribute('href') === '#' + cur));
   });
 </script>
 </body>
